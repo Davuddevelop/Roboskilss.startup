@@ -65,7 +65,7 @@ src/
 ## Build status by phase
 
 - [x] **Phase 1** — Scaffold, design tokens, landing page
-- [ ] **Phase 2** — Auth + dashboard shell
+- [x] **Phase 2** — Auth + dashboard shell
 - [ ] **Phase 3** — Data model + Bittle preset + create-a-job flow
 - [ ] **Phase 4** — Demo mode + `/jobs/[id]` (reward curve, video, download)
 - [ ] **Phase 5** — Polish (pricing, docs, states, OG image)
