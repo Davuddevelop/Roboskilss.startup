@@ -42,6 +42,18 @@ Run `supabase/schema.sql` in the Supabase SQL editor (tables `robots`,
 own rows). Without keys, set `NEXT_PUBLIC_PREVIEW_UI=true` to review the
 authenticated UI with fixture data.
 
+### Demo seed data
+
+Demo mode is self-contained. The seeded "Bittle — walk forward" run lives at
+`/jobs/demo-bittle-walk-forward` and is always resolvable (no DB needed). Its
+assets are in `public/seed/` (reward curve, evaluation video + poster, policy
+file). To also insert a per-user demo row into Supabase:
+
+```bash
+set -a; . .env.local; set +a      # load Supabase env
+npm run seed -- you@company.com   # user must have signed up first
+```
+
 ## Scripts
 
 | Command | Description |
@@ -74,6 +86,6 @@ src/
 - [x] **Phase 1** — Scaffold, design tokens, landing page
 - [x] **Phase 2** — Auth + dashboard shell
 - [x] **Phase 3** — Data model + Bittle preset + create-a-job flow
-- [ ] **Phase 4** — Demo mode + `/jobs/[id]` (reward curve, video, download)
+- [x] **Phase 4** — Demo mode + `/jobs/[id]` (reward curve, video, download)
 - [ ] **Phase 5** — Polish (pricing, docs, states, OG image)
 - [ ] **Phase 6** — Live worker path (queue + Python engine), feature-flagged

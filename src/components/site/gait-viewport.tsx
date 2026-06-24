@@ -10,7 +10,6 @@ import { motion } from "motion/react";
  * Bittle walking is dropped in alongside it; the chrome stays identical.
  */
 
-const HIP_Y = 96;
 const THIGH = 26;
 const SHANK = 26;
 
@@ -26,7 +25,7 @@ function Leg({ x, phase }: { x: number; phase: number }) {
   const duration = 0.9;
   const delay = -phase * duration;
   return (
-    <g transform={`translate(${x}, ${HIP_Y})`}>
+    <g transform={`translate(${x}, 0)`}>
       <motion.g
         style={{ originX: 0, originY: 0 }}
         animate={{ rotate: [18, -20, 18] }}
@@ -84,22 +83,25 @@ export function GaitViewport() {
           </motion.g>
           <line x1={0} y1={170} x2={320} y2={170} className="stroke-line" strokeWidth={1.5} />
 
-          {/* robot — bobs subtly with the gait */}
-          <motion.g
-            transform="translate(160, 64)"
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 0.45, repeat: Infinity, ease: "easeInOut" }}
-          >
-            {legs.map((l, i) => (
-              <Leg key={i} {...l} />
-            ))}
-            {/* torso */}
-            <rect x={-56} y={4} width={112} height={20} rx={9} className="fill-elevated stroke-line-strong" strokeWidth={1.5} />
-            <rect x={-56} y={4} width={112} height={20} rx={9} className="fill-none stroke-brand/30" strokeWidth={1} />
-            {/* head */}
-            <rect x={-78} y={2} width={22} height={16} rx={6} className="fill-elevated stroke-line-strong" strokeWidth={1.5} />
-            <circle cx={-70} cy={10} r={1.8} className="fill-brand" />
-          </motion.g>
+          {/* robot — hips at (160,118) so feet reach the floor (y=170). Static
+              translate on the parent so motion's y-animation can't override
+              horizontal position. Torso sits just above the hips. */}
+          <g transform="translate(160, 118)">
+            <motion.g
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 0.45, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {legs.map((l, i) => (
+                <Leg key={i} {...l} />
+              ))}
+              {/* torso */}
+              <rect x={-56} y={-19} width={112} height={22} rx={10} className="fill-elevated stroke-line-strong" strokeWidth={1.5} />
+              <rect x={-56} y={-19} width={112} height={22} rx={10} className="fill-none stroke-brand/30" strokeWidth={1} />
+              {/* head */}
+              <rect x={-78} y={-17} width={24} height={18} rx={6} className="fill-elevated stroke-line-strong" strokeWidth={1.5} />
+              <circle cx={-69} cy={-8} r={1.9} className="fill-brand" />
+            </motion.g>
+          </g>
         </svg>
 
         {/* live metric overlay */}

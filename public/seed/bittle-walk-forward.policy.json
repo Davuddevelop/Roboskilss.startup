@@ -1,0 +1,122 @@
+{
+  "format": "roboskills-policy/v1",
+  "robot": "petoi_bittle",
+  "behavior": "walk_forward",
+  "created_at": "2026-06-01T00:11:00Z",
+  "control_hz": 50,
+  "observation": {
+    "dim": 33,
+    "layout": [
+      "projected_gravity[3]",
+      "base_angular_velocity[3]",
+      "joint_positions[8]",
+      "joint_velocities[8]",
+      "previous_action[8]",
+      "gait_clock_sincos[2]",
+      "commanded_velocity[1]"
+    ],
+    "mean": [
+      0,
+      0.841,
+      0.909,
+      0.141,
+      -0.757,
+      -0.959,
+      -0.279,
+      0.657,
+      0.989,
+      0.412,
+      -0.544,
+      -1,
+      -0.537,
+      0.42,
+      0.991,
+      0.65,
+      -0.288,
+      -0.961,
+      -0.751,
+      0.15,
+      0.913,
+      0.837,
+      -0.009,
+      -0.846,
+      -0.906,
+      -0.132,
+      0.763,
+      0.956,
+      0.271,
+      -0.664,
+      -0.988,
+      -0.404,
+      0.551
+    ],
+    "std": [
+      1.5,
+      1.04,
+      0.916,
+      1.49,
+      1.154,
+      0.784,
+      1.46,
+      1.254,
+      0.646,
+      1.411,
+      1.339,
+      0.504,
+      1.344,
+      1.407,
+      0.637,
+      1.26,
+      1.458,
+      0.775,
+      1.16,
+      1.489,
+      0.908,
+      1.048,
+      1.5,
+      1.033,
+      0.924,
+      1.491,
+      1.147,
+      0.792,
+      1.463,
+      1.248,
+      0.654,
+      1.415,
+      1.334
+    ],
+    "clip": 10
+  },
+  "action": {
+    "dim": 8,
+    "joints": [
+      "left-front-shoulder",
+      "left-front-knee",
+      "right-front-shoulder",
+      "right-front-knee",
+      "left-back-shoulder",
+      "left-back-knee",
+      "right-back-shoulder",
+      "right-back-knee"
+    ],
+    "type": "target_joint_angles_normalized",
+    "range_deg": [
+      -90,
+      90
+    ]
+  },
+  "network": {
+    "type": "mlp",
+    "hidden": [
+      256,
+      256
+    ],
+    "activation": "tanh",
+    "note": "Weights omitted from this demo artifact. A live run ships full ONNX weights here."
+  },
+  "metrics": {
+    "final_forward_velocity": 0.41,
+    "fall_rate": 0.03,
+    "episode_length": 1000
+  }
+}

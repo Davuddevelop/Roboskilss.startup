@@ -7,7 +7,7 @@ export type JobStatus =
   | "failed"
   | "canceled";
 
-export type PolicyFormat = "onnx" | "zip" | "pt";
+export type PolicyFormat = "onnx" | "zip" | "pt" | "json";
 
 export interface RobotConfig {
   /** Actuated leg DOF (Bittle = 8). */

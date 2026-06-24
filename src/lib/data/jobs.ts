@@ -1,10 +1,11 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/env";
+import { isSupabaseConfigured, isUiPreview } from "@/lib/supabase/env";
+import { DEMO_JOB, isDemoJobId } from "@/lib/demo/seed-data";
 import type { JobParams, TrainingJob } from "@/lib/types/db";
 
 export async function listJobs(): Promise<TrainingJob[]> {
-  if (!isSupabaseConfigured) return [];
+  if (!isSupabaseConfigured) return isUiPreview ? [DEMO_JOB] : [];
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("training_jobs")
@@ -15,6 +16,8 @@ export async function listJobs(): Promise<TrainingJob[]> {
 }
 
 export async function getJob(id: string): Promise<TrainingJob | null> {
+  // The canonical seeded demo job is always available (no DB required).
+  if (isDemoJobId(id)) return DEMO_JOB;
   if (!isSupabaseConfigured) return null;
   const supabase = await createClient();
   const { data } = await supabase

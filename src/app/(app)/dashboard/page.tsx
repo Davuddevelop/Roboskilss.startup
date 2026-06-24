@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Bot, ListChecks, Package, Sparkles, ChevronRight } from "lucide-react";
+import { Bot, ListChecks, Package, Sparkles, ChevronRight, PlayCircle } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { listRobots } from "@/lib/data/robots";
 import { listJobs } from "@/lib/data/jobs";
 import { BEHAVIORS } from "@/lib/robots/presets";
+import { DEMO_JOB_ID } from "@/lib/demo/seed-data";
 import { PageHeader } from "@/components/app/page-header";
 import { EmptyState } from "@/components/app/empty-state";
 import { JobStatusBadge } from "@/components/app/job-status-badge";
@@ -44,6 +45,31 @@ export default async function DashboardPage() {
       />
 
       <div className="space-y-10 px-6 py-8">
+        {/* featured seeded demo run — always available */}
+        <Link
+          href={`/jobs/${DEMO_JOB_ID}`}
+          className="group relative flex items-center justify-between gap-4 overflow-hidden rounded-xl border border-brand/40 bg-surface p-5 transition-colors hover:border-brand/70"
+        >
+          <div className="pointer-events-none absolute right-0 top-0 h-40 w-80 rounded-full bg-brand/15 blur-[90px]" />
+          <div className="relative flex items-center gap-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-brand/40 bg-elevated text-brand-soft">
+              <PlayCircle className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="text-sm font-medium">
+                See a finished run — Bittle walking forward
+              </p>
+              <p className="mt-0.5 text-xs text-muted">
+                Real reward curve, evaluation video, and a downloadable policy.
+              </p>
+            </div>
+          </div>
+          <span className="relative inline-flex items-center gap-1 text-sm text-brand-soft">
+            Open demo
+            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </Link>
+
         <div className="grid gap-4 sm:grid-cols-3">
           {stats.map((s) => (
             <div
