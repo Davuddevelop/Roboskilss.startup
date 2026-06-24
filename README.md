@@ -87,5 +87,5 @@ src/
 - [x] **Phase 2** — Auth + dashboard shell
 - [x] **Phase 3** — Data model + Bittle preset + create-a-job flow
 - [x] **Phase 4** — Demo mode + `/jobs/[id]` (reward curve, video, download)
-- [ ] **Phase 5** — Polish (pricing, docs, states, OG image)
+- [x] **Phase 5** — Polish (pricing, docs, states, OG image)
 - [ ] **Phase 6** — Live worker path (queue + Python engine), feature-flagged
