@@ -35,6 +35,13 @@ npm run dev                  # http://localhost:3000
 Phase 1 (landing) runs with no external services. Supabase keys are needed from
 Phase 2 (auth/dashboard) onward.
 
+### Database
+
+Run `supabase/schema.sql` in the Supabase SQL editor (tables `robots`,
+`training_jobs`, `policies`, all with row-level security so users only see their
+own rows). Without keys, set `NEXT_PUBLIC_PREVIEW_UI=true` to review the
+authenticated UI with fixture data.
+
 ## Scripts
 
 | Command | Description |
@@ -66,7 +73,7 @@ src/
 
 - [x] **Phase 1** — Scaffold, design tokens, landing page
 - [x] **Phase 2** — Auth + dashboard shell
-- [ ] **Phase 3** — Data model + Bittle preset + create-a-job flow
+- [x] **Phase 3** — Data model + Bittle preset + create-a-job flow
 - [ ] **Phase 4** — Demo mode + `/jobs/[id]` (reward curve, video, download)
 - [ ] **Phase 5** — Polish (pricing, docs, states, OG image)
 - [ ] **Phase 6** — Live worker path (queue + Python engine), feature-flagged
